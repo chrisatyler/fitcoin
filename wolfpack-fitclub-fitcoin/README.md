@@ -45,7 +45,8 @@ The network archive will be placed in a ./dist/ directory as wolfpack-fitclub-fi
 
 ## Deploy the blockchain business network archive
 ---
-In order to use the definition, it must be deployed to the 
+In order to use the definition, it must be deployed to the Hyperledger Fabric engine. From the ./wolfpack-fitclub-fitcoin/dist directory, run the following commands.
+
 ```
 composer network install --archiveFile wolfpack-fitclub-fitcoin.bna --card PeerAdmin@hlfv1
 
@@ -101,10 +102,37 @@ Command succeeded
 ## Start the Composer REST server
 ---
 
-For the next step, we need the blockchain network accessible via REST API's. The Composer REST Server generates a set of API's based on the Composer Model
+For the next step, we need the blockchain network accessible via REST API's. The Composer REST Server generates a set of API's based on the Composer Model.
+
+From the command line, enter
+```
+composer-rest-server -p 3020 -c admin@wolfpack-fitclub-fitcoin -n never
+```
+
+## Load some sample data
+
+There is a transaction to setup the demo with some data including:
+1. A Club called WolfPack Elite
+2. A few members
+3. A few stores and products
+
+To run the transaction to create the sample demo, run the following command.
+```
+curl -X POST --header 'Content-Type: application/json' --header 'Accept: application/json' -d '{"$class":"org.fitclub.fitcoin.SetupDemo"}' 'http://localhost:3020/api/SetupDemo'
+```
+
+## Test that the data loaded
+
+Run the following command 
 
 ```
-composer-rest-server -p 3020 -c admin@wolfpack-fitclub-fitcoin
+curl -X GET --header 'Accept: application/json' 'http://localhost:3020/api/Member'
 ```
 
-## 
+You should see some data returned in a json format that should look something like this:
+
+```
+[{"$class":"org.fitclub.fitcoin.Member","club":"resource:org.fitclub.fitcoin.Club#CLUB_001","memberStatus":"ACTIVE","personId":"MEMBER_001","personFirstName":"Chris","personLastName":"Tyler","fitCoinWallet":"resource:org.fitclub.fitcoin.FitCoinWallet#MEMBER_001"},{"$class":"org.fitclub.fitcoin.Member","club":"resource:org.fitclub.fitcoin.Club#CLUB_001","memberStatus":"ACTIVE","personId":"MEMBER_002","personFirstName":"Darrel","personLastName":"Pyle","fitCoinWallet":"resource:org.fitclub.fitcoin.FitCoinWallet#MEMBER_002"},{"$class":"org.fitclub.fitcoin.Member","club":"resource:org.fitclub.fitcoin.Club#CLUB_001","memberStatus":"ACTIVE","personId":"MEMBER_003","personFirstName":"Ashley","personLastName":"Troggio","fitCoinWallet":"resource:org.fitclub.fitcoin.FitCoinWallet#MEMBER_003"}]
+```
+
+Congratulations! You now have a working Blockchain with data.
