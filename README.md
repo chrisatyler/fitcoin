@@ -1,5 +1,7 @@
 # The Fitcoin project
 
+This is a sample web application that uses a Hyperledger Fabric blockchain to track and trace fitness rewards. A Fitness Club can add new members and you can simulate those members receiving rewards points, redeeming rewards points, viewing their rewards points history. Clubs can also inactivate members.
+
 ## Main components
 1. Hyperledger Fabric and Hyperledger Composer
 2. Fitcoin Blockchain Network Archive
@@ -39,6 +41,7 @@ Next run the script - as this briefly uses sudo during its execution, you will b
 ```
 
 ## Installing pre-requisites on MacOS
+---
 
 **Note: Mac OS X version 10.12.6 was used for these instructions.**
 
@@ -108,6 +111,7 @@ After running the installed Docker application you should have the whale icon in
 
 ## Next Steps
 ### Install the components
-1. [Hyperledger Fabric and Composer](./fabric-dev-servers/install.md)
-2. [Build and deploy the Fitcoin Blockchain Network](./wolfpack-fitclub-fitcoin/install.md)
-3. [Build and run the Fitcoin Angular Web App](./fitcoin-app/installmd)
+1. [Hyperledger Fabric and Composer](./fabric-dev-servers/README.md)
+2. [Build and deploy the Fitcoin Blockchain Network](./wolfpack-fitclub-fitcoin/README.md)
+3. [Build and run the Fitcoin Angular Web App](./fitcoin-app/README.md)
+
