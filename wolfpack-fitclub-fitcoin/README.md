@@ -41,7 +41,7 @@ npm install
 ```
 This will install all of the necessary modules and will run the build script to build the network archive.
 
-The network archive will be placed in a ./dist/ directory as wolfpack-fitclub-fitcoin.bna. 
+The network archive will be placed in a ./wolfpack-fitclub-fitcoin/dist/ directory as wolfpack-fitclub-fitcoin.bna. 
 
 ## Deploy the blockchain business network archive
 ---

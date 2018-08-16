@@ -35,9 +35,9 @@ Browser app for simple editing and testing Business Networks:
 npm install -g composer-playground@0.20
 ```
 
-### Step 4: Install Hyperledger Fabric
+### Step 4: Download the Hyperledger Fabric Docker Containers
 
-This step gives you a local Hyperledger Fabric runtime to deploy the Fitcoin business network to.
+This step gives you a local Hyperledger Fabric Docker containers. These will be used to start the Hyperledger Fabric platform to deploy the Fitcoin business network to.
 
 Run the following command within the fabric-dev-servers directory.
 ```
@@ -61,3 +61,5 @@ From within the fabric-dev-servers directory, run the following command to start
 ```
 ./stopFabric.sh
 ```
+
+Congratulations! You now have a working Hyperledger Fabric and Composer environment.
