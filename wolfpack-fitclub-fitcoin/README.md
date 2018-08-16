@@ -1,107 +1,36 @@
-# The Fitcoin project
+# The Fitcoin Blockchain Network
 
-## Main components
-1. Hyperledger Fabric and Hyperledger Composer
-2. Fitcoin Blockchain Network Archive
-3. Fitcoin Angular Web App
+This is the definition of the Hyperledger Fabric and Composer blockchain network. Hyperledger models consist of a few components.
 
-## Pre-requisites
-1. At least 4Gb of memory
-2. Operating Systems: Ubuntu Linux 14.04 / 16.04 LTS (both 64-bit), or Mac OS 10.12
-3. Docker Engine: Version 17.03 or higher
-4. Docker-Compose: Version 1.8 or higher
-5. Node: 8.9 or higher (note version 9 is not supported)
-6. npm: v5.x
-7. git: 2.9.x or higher
-8. Python: 2.7.x
+1. Model Files (.cto) which contains the definition of the following: 
+    
+    a. Assets - the items that are owned and traded
 
-## Installing pre-requisites on Ubuntu
+    b. Participants - the people or organizations that own and transact on assets
 
-1. Login as a normal user, rather than root.
-2. Do not su to root.
-3. When installing prerequisites, use curl, then unzip using sudo.
-4. Run prereqs-ubuntu.sh as a normal user. It may prompt for root password as some of it's actions are required to be run as root.
-5. Do not use npm with sudo or su to root to use it.
-6. Avoid installing node globally as root.
+    c. Transactions - the structure of the data elements passed in on a transaction
 
-If you're running on Ubuntu, you can download the prerequisites using the following commands:
+    d. Events - alerts or notifications that participants can subscribe to to know when things happen
 
-```
-curl -O https://hyperledger.github.io/composer/latest/prereqs-ubuntu.sh
+2. Script Files (.js) which contain the smart contract logic. In this case there are a few types of transactions with smart contracts
 
-chmod u+x prereqs-ubuntu.sh
-```
+    a. AddMember - When a new member is added, they are given a seed of 100 Fitcoins and their status is set to Active
 
-Next run the script - as this briefly uses sudo during its execution, you will be prompted for your password.
+    b. Receive Fitcoins - When a member is being given Fitcoins, they must be active
 
-```
-./prereqs-ubuntu.sh
-```
+    c. Redeem Fitcoins - When a member is redeeming Fitcoins, they must be active and they must have a sufficient balance to redeem the requested Fitcoins
 
-## Installing pre-requisites on MacOS
+    d. Inactivate Member - When a member is inactivated, they are set to inactive and the system will not allow them to receive or redeem Fitcoins
 
-**Note: Mac OS X version 10.12.6 was used for these instructions.**
+3. Permission Files (.acl) which define the security permissions. In this case, there are no permissions yet.
 
-### Install nvm and Apple Xcode 
+4. Query Files (.qry) which define the logic to access data from the blockchain. There is no direct query mechanism besides Query Files through Composer.
+
+This directory contains all of the appropriate files to buld the blockchain network archive which can be deployed to a Hyperledger Fabric / Composer environment.
+
+## Before you begin
 ---
 
-First install nvm (the Node version manager). nvm is a tool that allows you to easily install, update and switch between versions of Node.js.
+Make sure you have installed the required pre-requisites, following the instructions in [Installing pre-requisites](../README.md).
 
-Open the terminal (command line) by clicking on the magnifier in the menu bar at the top right of your screen. Type terminal and press enter.
-
-In the terminal window paste the text below and press enter:
-
-```
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
-```
-
-More information on this script and the Node install process is available here.
-
-When you hit enter you should see the pop-up below, prompting you to install git. Press the Get Xcode button to install the full Apple Xcode IDE, including a C++ compiler, used to install native Node.js modules.
-
-The download and install process for Xcode may take 20 minutes or more. Be patient!
-
-After the installation of Xcode has completed launch Xcode. Accept the license agreement. It will prompt you for your username and password and will install additional components.
-
-After Xcode finishes installing additional components and launches, simply quit Xcode.
-
-Switch back to the terminal and create your bash profile (stores user preferences for bash):
-
-```
-touch .bash_profile
-```
-
-Then rerun the original curl command:
-
-```
-curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.0/install.sh | bash
-```
-
-Close the terminal and reopen it.
-
-Check that nvm is installed and is accessible:
-
-```
-nvm —-version
-```
-
-### Install Node
----
-Install the latest (long term support) version of Node:
-```
-nvm install --lts
-```
-Switch to the LTS version of Node:
-```
-nvm use --lts
-```
-Check that Node is installed:
-```
-node --version
-```
-
-### Install Docker
----
-Follow the instructions here to install Docker for Mac (stable): https://docs.docker.com/docker-for-mac/install/
-
-After running the installed Docker application you should have the whale icon in your menu bar, with a green “Docker is running” status.
+## Build the network archive (bna file)
