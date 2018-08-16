@@ -34,3 +34,77 @@ This directory contains all of the appropriate files to buld the blockchain netw
 Make sure you have installed the required pre-requisites, following the instructions in [Installing pre-requisites](../README.md).
 
 ## Build the network archive (bna file)
+---
+From within the wolfpack-fitclub-fitcoin directory, run the following command:
+```
+npm install
+```
+This will install all of the necessary modules and will run the build script to build the network archive.
+
+The network archive will be placed in a ./dist/ directory as wolfpack-fitclub-fitcoin.bna. 
+
+## Deploy the blockchain business network archive
+---
+In order to use the definition, it must be deployed to the 
+```
+composer network install --archiveFile wolfpack-fitclub-fitcoin.bna --card PeerAdmin@hlfv1
+
+composer network start --networkName wolfpack-fitclub-fitcoin --networkVersion 0.0.2 --card PeerAdmin@hlfv1 --networkAdmin admin --networkAdminEnrollSecret adminpw
+```
+
+## Create the Composer Card to connect to the network
+---
+From the command line, enter
+```
+composer card create -n wolfpack-fitclub-fitcoin -p ../../fabric-dev-servers/DevServer_connection.json -u admin -s adminpw
+```
+You should see this:
+
+```
+Successfully created business network card file to 
+    Output file: admin@wolfpack-fitclub-fitcoin.card
+
+Command succeeded
+```
+ ## Import the Composer Card into your Composer Wallet
+---
+```
+composer card import -f admin@wolfpack-fitclub-fitcoin.card
+```
+You should see this:
+```
+Successfully imported business network card
+	Card file: admin@wolfpack-fitclub-fitcoin.card
+	Card name: admin@wolfpack-fitclub-fitcoin
+
+Command succeeded
+```
+
+## Test the composer network is listening
+---
+From the command line, enter
+```
+composer network ping -c admin@wolfpack-fitclub-fitcoin
+```
+
+You should see something that looks like this
+```
+The connection to the network was successfully tested: wolfpack-fitclub-fitcoin
+	Business network version: 0.0.2
+	Composer runtime version: 0.20.0
+	participant: org.hyperledger.composer.system.NetworkAdmin#admin
+	identity: org.hyperledger.composer.system.Identity#6f8e156dde4d67f9c1c10cd4180b3fd5d9c7238b8039c306a7dc26a87eb74521
+
+Command succeeded
+```
+
+## Start the Composer REST server
+---
+
+For the next step, we need the blockchain network accessible via REST API's. The Composer REST Server generates a set of API's based on the Composer Model
+
+```
+composer-rest-server -p 3020 -c admin@wolfpack-fitclub-fitcoin
+```
+
+## 

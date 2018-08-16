@@ -61,16 +61,3 @@ From within the fabric-dev-servers directory, run the following command to start
 ```
 ./stopFabric.sh
 ```
-
-##  Start the Composer Web App (aka Playground)
----
-To start the playground, run the following command
-```
-composer-playground --port 4200
-```
-
-This will start the playground on port 4200. It should kick you into a web browser pointed at http://localhost:4200.
-
-
-
-
