@@ -1,0 +1,91 @@
+/**
+ * Sample business network definition.
+ */
+namespace org.fitclub.fitcoin
+
+enum MemberStatus {
+  o ACTIVE
+  o INACTIVE
+}
+
+asset FitCoinWallet identified by fitCoinWalletId {
+  o String fitCoinWalletId
+  o Integer fitCoinBalance
+}
+
+abstract participant Person identified by personId {
+  o String personId
+  o String personFirstName
+  o String personLastName
+  --> FitCoinWallet fitCoinWallet optional
+}
+
+participant Member extends Person {
+  --> Club club
+  o MemberStatus memberStatus
+}
+
+participant Club identified by clubId {
+  o String clubId
+  o String clubName
+  --> ClubOwner clubOwner
+}
+
+participant ClubOwner extends Person {
+}
+
+participant StoreOwner extends Person {
+  o String storeName
+  --> Club club
+}
+
+abstract transaction FitCoinExchange {
+  o Integer fitCoinQuantity
+}
+
+transaction ReceiveFitCoins extends FitCoinExchange {
+  --> Member member
+  o String activity
+  o DateTime activityDate
+}
+
+transaction RedeemFitCoins extends FitCoinExchange {
+  --> Member member
+  --> StoreOwner storeOwner
+  o String redeemedFor
+  o DateTime redeemedDate
+}
+
+transaction AddClubOwner {
+  o String clubOwnerId
+  o String clubOwnerFirstName
+  o String clubOwnerLastName
+}
+
+transaction AddClub {
+  o String clubId
+  o String clubName
+  --> ClubOwner clubOwner
+}
+
+transaction AddMember {
+  o String memberId
+  o String memberFirstName
+  o String memberLastName
+  --> Club club
+}
+
+transaction AddStoreOwner {
+  o String storeOwnerId
+  o String storeOwnerFirstName
+  o String storeOwnerLastName
+  o String storeName
+  --> Club club
+}
+
+transaction InactivateMember {
+  --> Member member
+}
+
+transaction SetupDemo {
+}
