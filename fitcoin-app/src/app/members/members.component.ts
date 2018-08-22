@@ -23,7 +23,7 @@ export class MembersComponent implements OnInit {
   private clubOwnerLastName: string;
   private memberFirstName: string;
   private memberLastName: string;
-  private redeemFitCoinsShow: boolean=false;
+  private redeemFitcoinsShow: boolean=false;
   private memberHistoryShow: boolean=false;
   private personId: string;
   
@@ -34,13 +34,13 @@ export class MembersComponent implements OnInit {
 	  this.personId = $event;
   }
   
-  redeemFitCoinsMessage($event) {
-	  this.redeemFitCoinsShow = true;
+  redeemFitcoinsMessage($event) {
+	  this.redeemFitcoinsShow = true;
 	  this.personId = $event;
   }
   
-  closeRedeemFitCoinsFormMessage($event) {
-	  this.redeemFitCoinsShow = false;
+  closeRedeemFitcoinsFormMessage($event) {
+	  this.redeemFitcoinsShow = false;
 	  this.getAllMembers();
   }
   

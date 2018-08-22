@@ -16,7 +16,7 @@ export class MemberDetailComponent implements OnInit {
 	@Input() personId:string;
 	@Input() memberStatus:string;
 	
-	@Output() redeemFitCoinsEvent = new EventEmitter<string>();
+	@Output() redeemFitcoinsEvent = new EventEmitter<string>();
 	@Output() showMemberActivityHistoryEvent = new EventEmitter<string>();
 	
 	private apiBaseURL=environment.apiBaseURL;
@@ -26,23 +26,23 @@ export class MemberDetailComponent implements OnInit {
 	private store: string;
 	private redeemedFor: string;
 	private fitCoinsToRedeem: number;
-//	private redeemFitCoinsShow: boolean;
+//	private redeemFitcoinsShow: boolean;
 	
 	constructor (private http: HttpClient) {
 
 	}
 
-	redeemFitCoins(personId) {
-		this.redeemFitCoinsEvent.emit(personId);
+	redeemFitcoins(personId) {
+		this.redeemFitcoinsEvent.emit(personId);
 	}
 
 	showMemberActivityHistory(personId) {
 		this.showMemberActivityHistoryEvent.emit(personId);
 	}
 	
-	getFitCoinBalance(personId) {
+	getFitcoinBalance(personId) {
 		var data;
-		var apiURL = this.apiBaseURL+"FitCoinWallet/"+personId
+		var apiURL = this.apiBaseURL+"FitcoinWallet/"+personId
 		try {
 			data = this.http.get(apiURL);
 		} catch (err) {
@@ -55,7 +55,7 @@ export class MemberDetailComponent implements OnInit {
 	}
 		
 	ngOnInit() {
-		this.getFitCoinBalance(this.personId).subscribe(data => {
+		this.getFitcoinBalance(this.personId).subscribe(data => {
 			this.fitCoinBalance = Number(data.fitCoinBalance);
 		}, error => {
 			this.fitCoinBalance = 0;
@@ -82,8 +82,8 @@ export class MemberDetailComponent implements OnInit {
 		this.ngOnInit();
 	}
 	
-	addFitCoins (personId,fitCoinsToAdd) {
-		var apiURL = this.apiBaseURL+"ReceiveFitCoins";
+	addFitcoins (personId,fitCoinsToAdd) {
+		var apiURL = this.apiBaseURL+"ReceiveFitcoins";
 		var today = new Date();
 		var dd = today.getDate();
 		var mm = today.getMonth()+1; //January is 0!
@@ -106,7 +106,7 @@ export class MemberDetailComponent implements OnInit {
 		console.log(data);
 		this.http.post(apiURL,data)
 			.subscribe(res => {
-					this.getFitCoinBalance(this.personId).subscribe(data => {
+					this.getFitcoinBalance(this.personId).subscribe(data => {
 						this.fitCoinBalance = Number(data.fitCoinBalance);
 						console.log('added coins');
 						console.log(this.fitCoinBalance);

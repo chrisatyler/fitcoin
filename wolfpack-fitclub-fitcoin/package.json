@@ -1,7 +1,7 @@
 {
     "name": "wolfpack-fitclub-fitcoin",
     "author": "author",
-    "description": "A sample Blockchain Network for tracking FitClub member FitCoin rewards",
+    "description": "A sample Blockchain Network for tracking FitClub member Fitcoin rewards",
     "version": "0.0.2",
     "devDependencies": {
         "browserfs": "^1.2.0",

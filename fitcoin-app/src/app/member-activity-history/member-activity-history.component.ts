@@ -21,22 +21,22 @@ export class MemberActivityHistoryComponent implements OnChanges, OnInit {
 
   constructor(private http: HttpClient) { }
   
-  getFitCoinsReceived(personId) {
+  getFitcoinsReceived(personId) {
 	  var data;
-	  var apiURL = this.apiBaseURL + "queries/FindFitCoinsReceivedByMember?member=resource%3Aorg.fitclub.fitcoin.Member%23" + personId;
+	  var apiURL = this.apiBaseURL + "queries/FindFitcoinsReceivedByMember?member=resource%3Aorg.fitclub.fitcoin.Member%23" + personId;
 	  try {
 		  this.http.get(apiURL).subscribe(data => {
 			  this.activityHistory=data;
-			  this.getFitCoinsRedeemed(personId);
+			  this.getFitcoinsRedeemed(personId);
 		  });
 	  } catch (err) {
 		  console.log('Error: ' + err);
 	  }	  
   }
   
-  getFitCoinsRedeemed(personId) {
+  getFitcoinsRedeemed(personId) {
 	  var data;
-	  var apiURL = this.apiBaseURL + "queries/FindFitCoinRedemptionsByMember?member=resource%3Aorg.fitclub.fitcoin.Member%23" + personId;
+	  var apiURL = this.apiBaseURL + "queries/FindFitcoinRedemptionsByMember?member=resource%3Aorg.fitclub.fitcoin.Member%23" + personId;
 	  try {
 		  this.http.get(apiURL)
 		  .subscribe(data => {
@@ -64,7 +64,7 @@ export class MemberActivityHistoryComponent implements OnChanges, OnInit {
   
   getActivityHistory(personId) {
 	this.activityHistory = [];
-	this.getFitCoinsReceived(personId);
+	this.getFitcoinsReceived(personId);
   }
   
   ngOnChanges(changes: SimpleChanges) {

@@ -8,7 +8,7 @@ enum MemberStatus {
   o INACTIVE
 }
 
-asset FitCoinWallet identified by fitCoinWalletId {
+asset FitcoinWallet identified by fitCoinWalletId {
   o String fitCoinWalletId
   o Integer fitCoinBalance
 }
@@ -17,7 +17,7 @@ abstract participant Person identified by personId {
   o String personId
   o String personFirstName
   o String personLastName
-  --> FitCoinWallet fitCoinWallet optional
+  --> FitcoinWallet fitCoinWallet optional
 }
 
 participant Member extends Person {
@@ -39,17 +39,17 @@ participant StoreOwner extends Person {
   --> Club club
 }
 
-abstract transaction FitCoinExchange {
+abstract transaction FitcoinExchange {
   o Integer fitCoinQuantity
 }
 
-transaction ReceiveFitCoins extends FitCoinExchange {
+transaction ReceiveFitcoins extends FitcoinExchange {
   --> Member member
   o String activity
   o DateTime activityDate
 }
 
-transaction RedeemFitCoins extends FitCoinExchange {
+transaction RedeemFitcoins extends FitcoinExchange {
   --> Member member
   --> StoreOwner storeOwner
   o String redeemedFor

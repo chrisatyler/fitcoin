@@ -20,11 +20,11 @@
 			  <tr *ngFor="let activity of activityHistory">
 			  	<td>{{ activity.activityDate | date }}{{ activity.redeemedDate | date }}</td>
 			  	<td>
-			  		<span *ngIf="activity.$class=='org.fitclub.fitcoin.RedeemFitCoins'">Redeemed </span>
-			  		<span *ngIf="activity.$class=='org.fitclub.fitcoin.ReceiveFitCoins'">Received </span>
-			  		{{ activity.fitCoinQuantity }} FitCoins for 
+			  		<span *ngIf="activity.$class=='org.fitclub.fitcoin.RedeemFitcoins'">Redeemed </span>
+			  		<span *ngIf="activity.$class=='org.fitclub.fitcoin.ReceiveFitcoins'">Received </span>
+			  		{{ activity.fitCoinQuantity }} Fitcoins for 
 			  		{{ activity.activity }}{{ activity.redeemedFor }}
-			  		<span *ngIf="activity.$class=='org.fitclub.fitcoin.RedeemFitCoins'"> from {{ activity.storeOwner | slice:40 }} </span>
+			  		<span *ngIf="activity.$class=='org.fitclub.fitcoin.RedeemFitcoins'"> from {{ activity.storeOwner | slice:40 }} </span>
 				</td>
 			  </tr>
 			  </tbody>

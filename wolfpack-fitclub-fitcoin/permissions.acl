@@ -24,7 +24,7 @@ rule MemberAccessToSeeTransactions {
   description:  "Members can only see their transactions"
   participant(m): "org.fitclub.fitcoin.Member"
   operation: READ
-  resource(r): "org.fitclub.fitcoin.RedeemFitCoins"
+  resource(r): "org.fitclub.fitcoin.RedeemFitcoins"
   condition: (r.member.personId == m.personId)
   action: ALLOW
 }

@@ -36,7 +36,7 @@
 	</div>
 	<!-- Modal -->
 	
-	<app-redeem-fitcoins-form [redeemFitCoinsShow]="this.redeemFitCoinsShow" [personId]="this.personId" (closeRedeemFitCoinsFormEvent)="closeRedeemFitCoinsFormMessage($event)"></app-redeem-fitcoins-form>
+	<app-redeem-fitcoins-form [redeemFitcoinsShow]="this.redeemFitcoinsShow" [personId]="this.personId" (closeRedeemFitcoinsFormEvent)="closeRedeemFitcoinsFormMessage($event)"></app-redeem-fitcoins-form>
 	<app-member-activity-history [memberHistoryShow]="this.memberHistoryShow" [personId]="this.personId"></app-member-activity-history>
 	
 	<div class="container scrollableContent">
@@ -52,7 +52,7 @@
 	  <tr *ngFor="let member of members">
 	  	<td>{{ member.personFirstName }}</td>
 	  	<td>{{ member.personLastName }}</td>
-	  	<td><app-member-detail [personId]="member.personId" [memberStatus]="member.memberStatus" (showMemberActivityHistoryEvent)="showMemberActivityHistoryMessage($event)" (redeemFitCoinsEvent)="redeemFitCoinsMessage($event)"></app-member-detail></td>
+	  	<td><app-member-detail [personId]="member.personId" [memberStatus]="member.memberStatus" (showMemberActivityHistoryEvent)="showMemberActivityHistoryMessage($event)" (redeemFitcoinsEvent)="redeemFitcoinsMessage($event)"></app-member-detail></td>
 	  </tr>
 	  </tbody>
 	  </table>

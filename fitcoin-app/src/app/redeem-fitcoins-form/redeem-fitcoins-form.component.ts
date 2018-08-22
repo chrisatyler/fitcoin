@@ -10,9 +10,9 @@ import { environment } from '../../environments/environment';
 })
 export class RedeemFitcoinsFormComponent implements OnChanges, OnInit {
 	@Input() personId:string;
-	@Input() redeemFitCoinsShow:boolean;
+	@Input() redeemFitcoinsShow:boolean;
 	
-	@Output() closeRedeemFitCoinsFormEvent = new EventEmitter<boolean>();
+	@Output() closeRedeemFitcoinsFormEvent = new EventEmitter<boolean>();
 
   constructor(private http: HttpClient) { }
 
@@ -22,7 +22,7 @@ export class RedeemFitcoinsFormComponent implements OnChanges, OnInit {
   private redeemedFor: string;
   private fitCoinsToRedeem: number;
   private fitCoinBalance: number = 0;
-  private _redeemFitCoinsShow: boolean;
+  private _redeemFitcoinsShow: boolean;
  
 	getStores() {
 		var data;
@@ -37,9 +37,9 @@ export class RedeemFitcoinsFormComponent implements OnChanges, OnInit {
 		
 	}
 	
-	getFitCoinBalance(personId) {
+	getFitcoinBalance(personId) {
 		var data;
-		var apiURL = this.apiBaseURL+"FitCoinWallet/"+personId
+		var apiURL = this.apiBaseURL+"FitcoinWallet/"+personId
 		try {
 			data = this.http.get(apiURL);
 		} catch (err) {
@@ -60,11 +60,11 @@ export class RedeemFitcoinsFormComponent implements OnChanges, OnInit {
   }
 	
   closeForm() {
-	  this.closeRedeemFitCoinsFormEvent.emit(false);
+	  this.closeRedeemFitcoinsFormEvent.emit(false);
   }
  
-  redeemFitCoins(personId) {	
-	var apiURL = this.apiBaseURL+"RedeemFitCoins";
+  redeemFitcoins(personId) {	
+	var apiURL = this.apiBaseURL+"RedeemFitcoins";
 	var today = new Date();
 	var dd = today.getDate();
 	var mm = today.getMonth()+1; //January is 0!
@@ -86,12 +86,12 @@ export class RedeemFitcoinsFormComponent implements OnChanges, OnInit {
 			fitCoinQuantity: Number(this.fitCoinsToRedeem) };
 	this.http.post(apiURL,data)
 		.subscribe(res => {
-				this.getFitCoinBalance(this.personId).subscribe(data => {
+				this.getFitcoinBalance(this.personId).subscribe(data => {
 					this.fitCoinBalance = Number(data.fitCoinBalance);
 				}, error => {
 					this.fitCoinBalance = 0;
 				});
-				this.closeRedeemFitCoinsFormEvent.emit(false);
+				this.closeRedeemFitcoinsFormEvent.emit(false);
 			},err => {
 				console.log("Error Occurred" + err);
 			}

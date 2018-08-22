@@ -1,23 +1,23 @@
-query FindFitCoinRedemptions{
-    description: "Find all the FitCoin Redemptions"
+query FindFitcoinRedemptions{
+    description: "Find all the Fitcoin Redemptions"
     statement:
-        SELECT org.fitclub.fitcoin.RedeemFitCoins
+        SELECT org.fitclub.fitcoin.RedeemFitcoins
             //WHERE ((age < _$ageParam OR firstName == 'Dan') AND (lastName != 'Selman'))
               //  ORDER BY [lastName ASC, firstName DESC]
 }
 
-query FindFitCoinRedemptionsByMember {
-    description: "Find all the FitCoin Redemptions for specified member"
+query FindFitcoinRedemptionsByMember {
+    description: "Find all the Fitcoin Redemptions for specified member"
     statement:
-        SELECT org.fitclub.fitcoin.RedeemFitCoins
+        SELECT org.fitclub.fitcoin.RedeemFitcoins
             WHERE ( member == _$member )
              // ORDER BY redeemedDate DESC
 }
 
-query FindFitCoinsReceivedByMember {
-    description: "Find all the FitCoins Received for specified member"
+query FindFitcoinsReceivedByMember {
+    description: "Find all the Fitcoins Received for specified member"
     statement:
-        SELECT org.fitclub.fitcoin.ReceiveFitCoins
+        SELECT org.fitclub.fitcoin.ReceiveFitcoins
             WHERE ( member == _$member )
              // ORDER BY redeemedDate DESC
 }

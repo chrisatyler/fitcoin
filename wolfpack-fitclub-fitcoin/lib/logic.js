@@ -1,15 +1,15 @@
 /**
  * A member can receive points for different activities
- * @param {org.fitclub.fitcoin.ReceiveFitCoins} receiveFitCoins - the points being received
+ * @param {org.fitclub.fitcoin.ReceiveFitcoins} receiveFitcoins - the points being received
  * @transaction
  * 
  * A member can only receive points if they are currently active
  * A member can receive points for activities such as using the treadmill, playing raquetball, swimming, or attending a class
  */
 
-function receiveFitCoins (receiveFitCoins) {
-    var member = receiveFitCoins.member;
-    var fitCoinsReceived = receiveFitCoins.fitCoinQuantity;
+function receiveFitcoins (receiveFitcoins) {
+    var member = receiveFitcoins.member;
+    var fitCoinsReceived = receiveFitcoins.fitCoinQuantity;
     var memberStatus = member.memberStatus;
 
     console.log('Member; ' + member.personFirstName + ' ' + member.personLastName + ' received ' + fitCoinsReceived.toString());
@@ -23,28 +23,28 @@ function receiveFitCoins (receiveFitCoins) {
     
     console.log('Member balance is now ' + member.fitCoinWallet.fitCoinBalance);
 
-    return getAssetRegistry('org.fitclub.fitcoin.FitCoinWallet')
-    .then(function (memberFitCoinWalletRegistry) {
+    return getAssetRegistry('org.fitclub.fitcoin.FitcoinWallet')
+    .then(function (memberFitcoinWalletRegistry) {
         // update the member's fitcoin balance
-        return memberFitCoinWalletRegistry.update(member.fitCoinWallet);
+        return memberFitcoinWalletRegistry.update(member.fitCoinWallet);
     });
 
 }
 
 /**
- * A member can redeem FitCoins for merchandise or services
- * @param {org.fitclub.fitcoin.RedeemFitCoins} redeemFitCoins - the FitCoins redeemed
+ * A member can redeem Fitcoins for merchandise or services
+ * @param {org.fitclub.fitcoin.RedeemFitcoins} redeemFitcoins - the Fitcoins redeemed
  * @transaction
  * 
- * A member can only redeem FitCoins if they have sufficient balance in their account and they are active
+ * A member can only redeem Fitcoins if they have sufficient balance in their account and they are active
  */
 
-function redeemFitCoins (redeemFitCoins) {
-    var member = redeemFitCoins.member;
+function redeemFitcoins (redeemFitcoins) {
+    var member = redeemFitcoins.member;
     //var memberWallet = member.fitCoinWallet;
-    var storeOwner = redeemFitCoins.storeOwner;
+    var storeOwner = redeemFitcoins.storeOwner;
     //var storeOwnerWallet = storeOwner.fitCoinWallet;
-    var fitCoinsBeingRedeemed = redeemFitCoins.fitCoinQuantity;
+    var fitCoinsBeingRedeemed = redeemFitcoins.fitCoinQuantity;
     var memberStatus = member.memberStatus;
     var memberCoinBalance = member.fitCoinWallet.fitCoinBalance;
     console.log('Member; ' + member.personFirstName + ' ' + member.personLastName + ' is redeeming ' + fitCoinsBeingRedeemed.toString());
@@ -57,7 +57,7 @@ function redeemFitCoins (redeemFitCoins) {
                 storeOwner.fitCoinWallet.fitCoinBalance+=fitCoinsBeingRedeemed;
         } else {
         		console.log('Member has insufficient points');
-                throw new Error('Member has insufficient FitCoins');
+                throw new Error('Member has insufficient Fitcoins');
         }
     } else {
     		console.log('Member is inactive');
@@ -66,16 +66,16 @@ function redeemFitCoins (redeemFitCoins) {
     
     console.log('Member balance is now ' + member.fitCoinWallet.fitCoinBalance);
 
-    return getAssetRegistry('org.fitclub.fitcoin.FitCoinWallet')
+    return getAssetRegistry('org.fitclub.fitcoin.FitcoinWallet')
     .then(function (memberWalletRegistry) {
-        // update the member's FitCoin balance
+        // update the member's Fitcoin balance
         return memberWalletRegistry.update(member.fitCoinWallet);
     })
     .then(function() {
-      return getAssetRegistry('org.fitclub.fitcoin.FitCoinWallet')
+      return getAssetRegistry('org.fitclub.fitcoin.FitcoinWallet')
     })
 	.then(function(storeOwnerWalletRegistry) {
-        // update the store owner's FitCoin balance
+        // update the store owner's Fitcoin balance
       	return storeOwnerWalletRegistry.update(storeOwner.fitCoinWallet);
     });
 }
@@ -129,17 +129,17 @@ function addClubOwner (clubOwner) {
  * @param {org.fitclub.fitcoin.AddMember} member - the member being added
  * @transaction
  * 
- * A member is added to the registry and seeded with 100 FitCoins and their status is set to Active
+ * A member is added to the registry and seeded with 100 Fitcoins and their status is set to Active
  */
 
 function addMember (member) {
 	
-  return getAssetRegistry('org.fitclub.fitcoin.FitCoinWallet')
+  return getAssetRegistry('org.fitclub.fitcoin.FitcoinWallet')
     .then(function(fitCoinWalletRegistry) {
     var factory = getFactory();
-    var newFitCoinWallet = factory.newResource('org.fitclub.fitcoin','FitCoinWallet',member.memberId);
-    newFitCoinWallet.fitCoinBalance = 100;
-    return fitCoinWalletRegistry.add(newFitCoinWallet);
+    var newFitcoinWallet = factory.newResource('org.fitclub.fitcoin','FitcoinWallet',member.memberId);
+    newFitcoinWallet.fitCoinBalance = 100;
+    return fitCoinWalletRegistry.add(newFitcoinWallet);
   })
     .then(function() {
     return getParticipantRegistry('org.fitclub.fitcoin.Member')
@@ -152,7 +152,7 @@ function addMember (member) {
     //newMember.fitCoinBalance = 100;
     newMember.memberStatus = 'ACTIVE';
     newMember.club = factory.newRelationship('org.fitclub.fitcoin','Club', member.club);
-    newMember.fitCoinWallet = factory.newRelationship('org.fitclub.fitcoin','FitCoinWallet',member.memberId);
+    newMember.fitCoinWallet = factory.newRelationship('org.fitclub.fitcoin','FitcoinWallet',member.memberId);
     return memberRegistry.add(newMember);
   });
 
@@ -168,12 +168,12 @@ function addMember (member) {
 
 function addStoreOwner (storeOwner) {
 	
-  return getAssetRegistry('org.fitclub.fitcoin.FitCoinWallet')
+  return getAssetRegistry('org.fitclub.fitcoin.FitcoinWallet')
   	.then(function(assetRegistry) {
       var factory = getFactory();
-      var newFitCoinWallet = factory.newResource('org.fitclub.fitcoin','FitCoinWallet',storeOwner.storeOwnerId);
-      newFitCoinWallet.fitCoinBalance = 0;
-      return assetRegistry.add(newFitCoinWallet);
+      var newFitcoinWallet = factory.newResource('org.fitclub.fitcoin','FitcoinWallet',storeOwner.storeOwnerId);
+      newFitcoinWallet.fitCoinBalance = 0;
+      return assetRegistry.add(newFitcoinWallet);
     })    
     .then(function() {
       return getParticipantRegistry('org.fitclub.fitcoin.StoreOwner');
@@ -185,7 +185,7 @@ function addStoreOwner (storeOwner) {
       newStoreOwner.personLastName = storeOwner.storeOwnerLastName;
       newStoreOwner.storeName = storeOwner.storeName;
       newStoreOwner.club = factory.newRelationship('org.fitclub.fitcoin','Club', storeOwner.club);
-      newStoreOwner.fitCoinWallet = factory.newRelationship('org.fitclub.fitcoin','FitCoinWallet',storeOwner.storeOwnerId);
+      newStoreOwner.fitCoinWallet = factory.newRelationship('org.fitclub.fitcoin','FitcoinWallet',storeOwner.storeOwnerId);
       return storeOwnerRegistry.add(newStoreOwner);
     });
 }
@@ -230,11 +230,11 @@ function setupDemo(setupDemo) {
 
     // create the wallets
     var wallet = [
-      factory.newResource(NS, 'FitCoinWallet', 'STORE_001'),
-      factory.newResource(NS, 'FitCoinWallet', 'STORE_002'),
-      factory.newResource(NS, 'FitCoinWallet', 'MEMBER_001'),
-      factory.newResource(NS, 'FitCoinWallet', 'MEMBER_002'),
-      factory.newResource(NS, 'FitCoinWallet', 'MEMBER_003')
+      factory.newResource(NS, 'FitcoinWallet', 'STORE_001'),
+      factory.newResource(NS, 'FitcoinWallet', 'STORE_002'),
+      factory.newResource(NS, 'FitcoinWallet', 'MEMBER_001'),
+      factory.newResource(NS, 'FitcoinWallet', 'MEMBER_002'),
+      factory.newResource(NS, 'FitcoinWallet', 'MEMBER_003')
     ];
     wallet[0].fitCoinBalance = 0;
     wallet[1].fitCoinBalance = 0;
@@ -250,13 +250,13 @@ function setupDemo(setupDemo) {
     store[0].storeName = 'Protein Up';
     store[0].personFirstName = 'Dan';
     store[0].personLastName = 'de Grazia';
-    store[0].fitCoinWallet = factory.newRelationship(NS, 'FitCoinWallet', 'STORE_001');
+    store[0].fitCoinWallet = factory.newRelationship(NS, 'FitcoinWallet', 'STORE_001');
     store[0].club = factory.newRelationship(NS, 'Club', 'CLUB_001');
 
     store[1].storeName = "Lou's Fitness Clothing";
     store[1].personFirstName = 'Lou';
     store[1].personLastName = 'Frolio';
-    store[1].fitCoinWallet = factory.newRelationship(NS, 'FitCoinWallet', 'STORE_002');
+    store[1].fitCoinWallet = factory.newRelationship(NS, 'FitcoinWallet', 'STORE_002');
     store[1].club = factory.newRelationship(NS, 'Club', 'CLUB_001');
 
     // create the members
@@ -269,19 +269,19 @@ function setupDemo(setupDemo) {
     member[0].personFirstName = 'Chris';
     member[0].personLastName = 'Tyler';
     member[0].memberStatus = 'ACTIVE';
-    member[0].fitCoinWallet = factory.newRelationship(NS, 'FitCoinWallet', 'MEMBER_001');
+    member[0].fitCoinWallet = factory.newRelationship(NS, 'FitcoinWallet', 'MEMBER_001');
     member[0].club = factory.newRelationship(NS, 'Club', 'CLUB_001');
 
     member[1].personFirstName = 'Darrel';
     member[1].personLastName = 'Pyle';
     member[1].memberStatus = 'ACTIVE';
-    member[1].fitCoinWallet = factory.newRelationship(NS, 'FitCoinWallet', 'MEMBER_002');
+    member[1].fitCoinWallet = factory.newRelationship(NS, 'FitcoinWallet', 'MEMBER_002');
     member[1].club = factory.newRelationship(NS, 'Club', 'CLUB_001');
 
     member[2].personFirstName = 'Ashley';
     member[2].personLastName = 'Troggio';
     member[2].memberStatus = 'ACTIVE';
-    member[2].fitCoinWallet = factory.newRelationship(NS, 'FitCoinWallet', 'MEMBER_003');
+    member[2].fitCoinWallet = factory.newRelationship(NS, 'FitcoinWallet', 'MEMBER_003');
     member[2].club = factory.newRelationship(NS, 'Club', 'CLUB_001');
 
     return getParticipantRegistry(NS + '.ClubOwner')
@@ -297,7 +297,7 @@ function setupDemo(setupDemo) {
             return clubRegistry.addAll([club]);
        })
         .then(function() {
-            return getAssetRegistry(NS + '.FitCoinWallet');
+            return getAssetRegistry(NS + '.FitcoinWallet');
         })
         .then(function(walletRegistry) {
             // add the wallets

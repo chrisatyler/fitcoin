@@ -176,7 +176,7 @@ module.exports = ".container {\n\twidth: 100%;\n}"
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n \t<!-- Modal -->\n\t<div class=\"modal fade\" aria-hidden=\"true\" id=\"memberHistoryShow\" role=\"dialog\">\n\t  <div class=\"modal-dialog\" role=\"document\">\n\t    <div class=\"modal-content\">\n\t      <div class=\"modal-header\">\n\t        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n\t        <h4 class=\"modal-title\" id=\"myModalLabel\">Activity History</h4>\n\t      </div>\n\t      <div class=\"modal-body\">\n\t\t\t<div class=\"container scrollableContent\">\n\t\t\t  <table class=\"table table-hover\">\n\t\t\t  <thead>\n\t\t\t  \t<tr>\n\t\t\t  \t\t<td>Activity Date</td>\n\t\t\t  \t\t<td>Action</td>\n\t\t\t  \t</tr>\n\t\t\t  </thead>\n\t\t\t  <tbody>\n\t\t\t  <tr *ngFor=\"let activity of activityHistory\">\n\t\t\t  \t<td>{{ activity.activityDate | date }}{{ activity.redeemedDate | date }}</td>\n\t\t\t  \t<td>\n\t\t\t  \t\t<span *ngIf=\"activity.$class=='org.fitclub.fitcoin.RedeemFitCoins'\">Redeemed </span>\n\t\t\t  \t\t<span *ngIf=\"activity.$class=='org.fitclub.fitcoin.ReceiveFitCoins'\">Received </span>\n\t\t\t  \t\t{{ activity.fitCoinQuantity }} FitCoins for \n\t\t\t  \t\t{{ activity.activity }}{{ activity.redeemedFor }}\n\t\t\t  \t\t<span *ngIf=\"activity.$class=='org.fitclub.fitcoin.RedeemFitCoins'\"> from {{ activity.storeOwner | slice:40 }} </span>\n\t\t\t\t</td>\n\t\t\t  </tr>\n\t\t\t  </tbody>\n\t\t\t  </table>\n\t\t\t</div>\t\t\n\t      </div>\n\t      <div class=\"modal-footer\">\n\t        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n\t      </div>\n\t    </div>\n\t  </div>\n\t</div>\n\t<!-- Modal -->\n\t\n"
+module.exports = "\n \t<!-- Modal -->\n\t<div class=\"modal fade\" aria-hidden=\"true\" id=\"memberHistoryShow\" role=\"dialog\">\n\t  <div class=\"modal-dialog\" role=\"document\">\n\t    <div class=\"modal-content\">\n\t      <div class=\"modal-header\">\n\t        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n\t        <h4 class=\"modal-title\" id=\"myModalLabel\">Activity History</h4>\n\t      </div>\n\t      <div class=\"modal-body\">\n\t\t\t<div class=\"container scrollableContent\">\n\t\t\t  <table class=\"table table-hover\">\n\t\t\t  <thead>\n\t\t\t  \t<tr>\n\t\t\t  \t\t<td>Activity Date</td>\n\t\t\t  \t\t<td>Action</td>\n\t\t\t  \t</tr>\n\t\t\t  </thead>\n\t\t\t  <tbody>\n\t\t\t  <tr *ngFor=\"let activity of activityHistory\">\n\t\t\t  \t<td>{{ activity.activityDate | date }}{{ activity.redeemedDate | date }}</td>\n\t\t\t  \t<td>\n\t\t\t  \t\t<span *ngIf=\"activity.$class=='org.fitclub.fitcoin.RedeemFitcoins'\">Redeemed </span>\n\t\t\t  \t\t<span *ngIf=\"activity.$class=='org.fitclub.fitcoin.ReceiveFitcoins'\">Received </span>\n\t\t\t  \t\t{{ activity.fitCoinQuantity }} Fitcoins for \n\t\t\t  \t\t{{ activity.activity }}{{ activity.redeemedFor }}\n\t\t\t  \t\t<span *ngIf=\"activity.$class=='org.fitclub.fitcoin.RedeemFitcoins'\"> from {{ activity.storeOwner | slice:40 }} </span>\n\t\t\t\t</td>\n\t\t\t  </tr>\n\t\t\t  </tbody>\n\t\t\t  </table>\n\t\t\t</div>\t\t\n\t      </div>\n\t      <div class=\"modal-footer\">\n\t        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n\t      </div>\n\t    </div>\n\t  </div>\n\t</div>\n\t<!-- Modal -->\n\t\n"
 
 /***/ }),
 
@@ -214,24 +214,24 @@ var MemberActivityHistoryComponent = /** @class */ (function () {
         this.activityHistory = [];
         this.apiBaseURL = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiBaseURL;
     }
-    MemberActivityHistoryComponent.prototype.getFitCoinsReceived = function (personId) {
+    MemberActivityHistoryComponent.prototype.getFitcoinsReceived = function (personId) {
         var _this = this;
         var data;
-        var apiURL = this.apiBaseURL + "queries/FindFitCoinsReceivedByMember?member=resource%3Aorg.fitclub.fitcoin.Member%23" + personId;
+        var apiURL = this.apiBaseURL + "queries/FindFitcoinsReceivedByMember?member=resource%3Aorg.fitclub.fitcoin.Member%23" + personId;
         try {
             this.http.get(apiURL).subscribe(function (data) {
                 _this.activityHistory = data;
-                _this.getFitCoinsRedeemed(personId);
+                _this.getFitcoinsRedeemed(personId);
             });
         }
         catch (err) {
             console.log('Error: ' + err);
         }
     };
-    MemberActivityHistoryComponent.prototype.getFitCoinsRedeemed = function (personId) {
+    MemberActivityHistoryComponent.prototype.getFitcoinsRedeemed = function (personId) {
         var _this = this;
         var data;
-        var apiURL = this.apiBaseURL + "queries/FindFitCoinRedemptionsByMember?member=resource%3Aorg.fitclub.fitcoin.Member%23" + personId;
+        var apiURL = this.apiBaseURL + "queries/FindFitcoinRedemptionsByMember?member=resource%3Aorg.fitclub.fitcoin.Member%23" + personId;
         try {
             this.http.get(apiURL)
                 .subscribe(function (data) {
@@ -261,7 +261,7 @@ var MemberActivityHistoryComponent = /** @class */ (function () {
     };
     MemberActivityHistoryComponent.prototype.getActivityHistory = function (personId) {
         this.activityHistory = [];
-        this.getFitCoinsReceived(personId);
+        this.getFitcoinsReceived(personId);
     };
     MemberActivityHistoryComponent.prototype.ngOnChanges = function (changes) {
         this.personId = changes["personId"].currentValue;
@@ -311,7 +311,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = " <span data-toggle=\"modal\" data-target=\"#memberHistoryShow\"><button class=\"btn btn-primary {{ this.inactivateMemberButton }}\" (click)=\"showMemberActivityHistory(this.personId)\" data-toggle=\"tooltip\" title=\"Member Balance\" style=\"width:75px;\"><span class=\"badge\">{{ fitCoinBalance }}</span></button></span>\n <span data-toggle=\"modal\" data-target=\"#redeemFitCoinsShow\"><button class=\"btn btn-primary {{ this.inactivateMemberButton }}\" (click)=\"redeemFitCoins(this.personId)\" data-toggle=\"tooltip\" title=\"Redeem FitCoins\"><span class=\"glyphicon glyphicon-bitcoin\" aria-hidden=\"true\"></span></button></span>\n <button class=\"btn btn-primary {{ this.inactivateMemberButton }}\" (click)=\"addFitCoins(this.personId,25)\" data-toggle=\"tooltip\" title=\"Register Workout\"><span class=\"glyphicon glyphicon-plus-sign\" aria-hidden=\"true\"></span></button>\n <button class=\"btn btn-primary {{ this.inactivateMemberButton }}\" (click)=\"inactivateMember(this.personId)\" data-toggle=\"tooltip\" title=\"Inactivate Member\"><span class=\"glyphicon glyphicon-remove-circle\" aria-hidden=\"true\"></span></button>\n "
+module.exports = " <span data-toggle=\"modal\" data-target=\"#memberHistoryShow\"><button class=\"btn btn-primary {{ this.inactivateMemberButton }}\" (click)=\"showMemberActivityHistory(this.personId)\" data-toggle=\"tooltip\" title=\"Member Balance\" style=\"width:75px;\"><span class=\"badge\">{{ fitCoinBalance }}</span></button></span>\n <span data-toggle=\"modal\" data-target=\"#redeemFitcoinsShow\"><button class=\"btn btn-primary {{ this.inactivateMemberButton }}\" (click)=\"redeemFitcoins(this.personId)\" data-toggle=\"tooltip\" title=\"Redeem Fitcoins\"><span class=\"glyphicon glyphicon-bitcoin\" aria-hidden=\"true\"></span></button></span>\n <button class=\"btn btn-primary {{ this.inactivateMemberButton }}\" (click)=\"addFitcoins(this.personId,25)\" data-toggle=\"tooltip\" title=\"Register Workout\"><span class=\"glyphicon glyphicon-plus-sign\" aria-hidden=\"true\"></span></button>\n <button class=\"btn btn-primary {{ this.inactivateMemberButton }}\" (click)=\"inactivateMember(this.personId)\" data-toggle=\"tooltip\" title=\"Inactivate Member\"><span class=\"glyphicon glyphicon-remove-circle\" aria-hidden=\"true\"></span></button>\n "
 
 /***/ }),
 
@@ -343,27 +343,27 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 //import { Response } from '@angular/http';
 
 var MemberDetailComponent = /** @class */ (function () {
-    //	private redeemFitCoinsShow: boolean;
+    //	private redeemFitcoinsShow: boolean;
     function MemberDetailComponent(http) {
         this.http = http;
         //instantiate the members
         this.member = [];
-        this.redeemFitCoinsEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.redeemFitcoinsEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.showMemberActivityHistoryEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.apiBaseURL = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiBaseURL;
         this.fitCoinBalance = 0;
         this.inactivateMemberButton = 'disabled';
         this.stores = [];
     }
-    MemberDetailComponent.prototype.redeemFitCoins = function (personId) {
-        this.redeemFitCoinsEvent.emit(personId);
+    MemberDetailComponent.prototype.redeemFitcoins = function (personId) {
+        this.redeemFitcoinsEvent.emit(personId);
     };
     MemberDetailComponent.prototype.showMemberActivityHistory = function (personId) {
         this.showMemberActivityHistoryEvent.emit(personId);
     };
-    MemberDetailComponent.prototype.getFitCoinBalance = function (personId) {
+    MemberDetailComponent.prototype.getFitcoinBalance = function (personId) {
         var data;
-        var apiURL = this.apiBaseURL + "FitCoinWallet/" + personId;
+        var apiURL = this.apiBaseURL + "FitcoinWallet/" + personId;
         try {
             data = this.http.get(apiURL);
         }
@@ -377,7 +377,7 @@ var MemberDetailComponent = /** @class */ (function () {
     };
     MemberDetailComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.getFitCoinBalance(this.personId).subscribe(function (data) {
+        this.getFitcoinBalance(this.personId).subscribe(function (data) {
             _this.fitCoinBalance = Number(data.fitCoinBalance);
         }, function (error) {
             _this.fitCoinBalance = 0;
@@ -403,9 +403,9 @@ var MemberDetailComponent = /** @class */ (function () {
         });
         this.ngOnInit();
     };
-    MemberDetailComponent.prototype.addFitCoins = function (personId, fitCoinsToAdd) {
+    MemberDetailComponent.prototype.addFitcoins = function (personId, fitCoinsToAdd) {
         var _this = this;
-        var apiURL = this.apiBaseURL + "ReceiveFitCoins";
+        var apiURL = this.apiBaseURL + "ReceiveFitcoins";
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth() + 1; //January is 0!
@@ -425,7 +425,7 @@ var MemberDetailComponent = /** @class */ (function () {
             fitCoinQuantity: fitCoinsToAdd };
         this.http.post(apiURL, data)
             .subscribe(function (res) {
-            _this.getFitCoinBalance(_this.personId).subscribe(function (data) {
+            _this.getFitcoinBalance(_this.personId).subscribe(function (data) {
                 _this.fitCoinBalance = Number(data.fitCoinBalance);
             }, function (error) {
                 _this.fitCoinBalance = 0;
@@ -445,7 +445,7 @@ var MemberDetailComponent = /** @class */ (function () {
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
         __metadata("design:type", Object)
-    ], MemberDetailComponent.prototype, "redeemFitCoinsEvent", void 0);
+    ], MemberDetailComponent.prototype, "redeemFitcoinsEvent", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
         __metadata("design:type", Object)
@@ -483,7 +483,7 @@ module.exports = "/*\ndiv.content {\n\tposition: absolute;\n\ttop: 140px;\n\tlef
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"container content\">\n\t<div class=\"jumbotron\">\n\t  <h1>{{ this.clubName }}</h1>\n\t  <h3>{{ this.clubOwnerFirstName }} {{this.clubOwnerLastName }}</h3>\n\t  <div class=\"row\">\n\t    <button class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\">Create a New Member</button>\n\t  </div>\n \t</div>\n\n\t<!-- Modal -->\n\t<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\n\t  <div class=\"modal-dialog\" role=\"document\">\n\t    <div class=\"modal-content\">\n\t      <div class=\"modal-header\">\n\t        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n\t        <h4 class=\"modal-title\" id=\"myModalLabel\">Modal title</h4>\n\t      </div>\n\t      <div class=\"modal-body\">\n\t       <form novalidate #newMemberForm=\"ngForm\">\n\t\t\t  <div class=\"form-group\">\n\t\t\t    <label for=\"memberFirstName\">Member First Name</label>\n\t\t\t    <input name=\"memberFirstName\" [(ngModel)]=\"this.memberFirstName\" type=\"text\" class=\"form-control\" id=\"memberFirstName\">\n\t\t\t  </div>\n\t\t\t  <div class=\"form-group\">\n\t\t\t    <label for=\"memberLastName\">Member Last Name</label>\n\t\t\t    <input name=\"memberLastName\" [(ngModel)]=\"this.memberLastName\" type=\"text\" class=\"form-control\" id=\"memberLastName\">\n\t\t\t  </div>\n\t\t\t</form>\n\t      </div>\n\t      <div class=\"modal-footer\">\n\t        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n\t        <button type=\"button\" class=\"btn btn-primary\" (click)=\"addNewMember()\" data-dismiss=\"modal\">Add Member</button>\n\t      </div>\n\t    </div>\n\t  </div>\n\t</div>\n\t<!-- Modal -->\n\t\n\t<app-redeem-fitcoins-form [redeemFitCoinsShow]=\"this.redeemFitCoinsShow\" [personId]=\"this.personId\" (closeRedeemFitCoinsFormEvent)=\"closeRedeemFitCoinsFormMessage($event)\"></app-redeem-fitcoins-form>\n\t<app-member-activity-history [memberHistoryShow]=\"this.memberHistoryShow\" [personId]=\"this.personId\"></app-member-activity-history>\n\t\n\t<div class=\"container scrollableContent\">\n\t  <table class=\"table table-hover\">\n\t  <thead>\n\t  \t<tr>\n\t  \t\t<td>Member First Name</td>\n\t  \t\t<td>Member Last Name</td>\n\t  \t\t<td>Member Actions</td>\n\t  \t</tr>\n\t  </thead>\n\t  <tbody>\n\t  <tr *ngFor=\"let member of members\">\n\t  \t<td>{{ member.personFirstName }}</td>\n\t  \t<td>{{ member.personLastName }}</td>\n\t  \t<td><app-member-detail [personId]=\"member.personId\" [memberStatus]=\"member.memberStatus\" (showMemberActivityHistoryEvent)=\"showMemberActivityHistoryMessage($event)\" (redeemFitCoinsEvent)=\"redeemFitCoinsMessage($event)\"></app-member-detail></td>\n\t  </tr>\n\t  </tbody>\n\t  </table>\n\t</div>\n\t\n\n</div>\n"
+module.exports = "<div class=\"container content\">\n\t<div class=\"jumbotron\">\n\t  <h1>{{ this.clubName }}</h1>\n\t  <h3>{{ this.clubOwnerFirstName }} {{this.clubOwnerLastName }}</h3>\n\t  <div class=\"row\">\n\t    <button class=\"btn btn-primary\" data-toggle=\"modal\" data-target=\"#myModal\">Create a New Member</button>\n\t  </div>\n \t</div>\n\n\t<!-- Modal -->\n\t<div class=\"modal fade\" id=\"myModal\" tabindex=\"-1\" role=\"dialog\" aria-labelledby=\"myModalLabel\">\n\t  <div class=\"modal-dialog\" role=\"document\">\n\t    <div class=\"modal-content\">\n\t      <div class=\"modal-header\">\n\t        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n\t        <h4 class=\"modal-title\" id=\"myModalLabel\">Modal title</h4>\n\t      </div>\n\t      <div class=\"modal-body\">\n\t       <form novalidate #newMemberForm=\"ngForm\">\n\t\t\t  <div class=\"form-group\">\n\t\t\t    <label for=\"memberFirstName\">Member First Name</label>\n\t\t\t    <input name=\"memberFirstName\" [(ngModel)]=\"this.memberFirstName\" type=\"text\" class=\"form-control\" id=\"memberFirstName\">\n\t\t\t  </div>\n\t\t\t  <div class=\"form-group\">\n\t\t\t    <label for=\"memberLastName\">Member Last Name</label>\n\t\t\t    <input name=\"memberLastName\" [(ngModel)]=\"this.memberLastName\" type=\"text\" class=\"form-control\" id=\"memberLastName\">\n\t\t\t  </div>\n\t\t\t</form>\n\t      </div>\n\t      <div class=\"modal-footer\">\n\t        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\">Close</button>\n\t        <button type=\"button\" class=\"btn btn-primary\" (click)=\"addNewMember()\" data-dismiss=\"modal\">Add Member</button>\n\t      </div>\n\t    </div>\n\t  </div>\n\t</div>\n\t<!-- Modal -->\n\t\n\t<app-redeem-fitcoins-form [redeemFitcoinsShow]=\"this.redeemFitcoinsShow\" [personId]=\"this.personId\" (closeRedeemFitcoinsFormEvent)=\"closeRedeemFitcoinsFormMessage($event)\"></app-redeem-fitcoins-form>\n\t<app-member-activity-history [memberHistoryShow]=\"this.memberHistoryShow\" [personId]=\"this.personId\"></app-member-activity-history>\n\t\n\t<div class=\"container scrollableContent\">\n\t  <table class=\"table table-hover\">\n\t  <thead>\n\t  \t<tr>\n\t  \t\t<td>Member First Name</td>\n\t  \t\t<td>Member Last Name</td>\n\t  \t\t<td>Member Actions</td>\n\t  \t</tr>\n\t  </thead>\n\t  <tbody>\n\t  <tr *ngFor=\"let member of members\">\n\t  \t<td>{{ member.personFirstName }}</td>\n\t  \t<td>{{ member.personLastName }}</td>\n\t  \t<td><app-member-detail [personId]=\"member.personId\" [memberStatus]=\"member.memberStatus\" (showMemberActivityHistoryEvent)=\"showMemberActivityHistoryMessage($event)\" (redeemFitcoinsEvent)=\"redeemFitcoinsMessage($event)\"></app-member-detail></td>\n\t  </tr>\n\t  </tbody>\n\t  </table>\n\t</div>\n\t\n\n</div>\n"
 
 /***/ }),
 
@@ -521,19 +521,19 @@ var MembersComponent = /** @class */ (function () {
         //instantiate the members
         this.members = [];
         this.apiBaseURL = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiBaseURL;
-        this.redeemFitCoinsShow = false;
+        this.redeemFitcoinsShow = false;
         this.memberHistoryShow = false;
     }
     MembersComponent.prototype.showMemberActivityHistoryMessage = function ($event) {
         this.memberHistoryShow = true;
         this.personId = $event;
     };
-    MembersComponent.prototype.redeemFitCoinsMessage = function ($event) {
-        this.redeemFitCoinsShow = true;
+    MembersComponent.prototype.redeemFitcoinsMessage = function ($event) {
+        this.redeemFitcoinsShow = true;
         this.personId = $event;
     };
-    MembersComponent.prototype.closeRedeemFitCoinsFormMessage = function ($event) {
-        this.redeemFitCoinsShow = false;
+    MembersComponent.prototype.closeRedeemFitcoinsFormMessage = function ($event) {
+        this.redeemFitcoinsShow = false;
         this.getAllMembers();
     };
     MembersComponent.prototype.getClub = function () {
@@ -637,7 +637,7 @@ module.exports = ""
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n \t<!-- Modal -->\n\t<div class=\"modal fade\" aria-hidden=\"true\" id=\"redeemFitCoinsShow\" role=\"dialog\">\n\t  <div class=\"modal-dialog\" role=\"document\">\n\t    <div class=\"modal-content\">\n\t      <div class=\"modal-header\">\n\t        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n\t        <h4 class=\"modal-title\" id=\"myModalLabel\">Redeem FitCoins</h4>\n\t      </div>\n\t      <div class=\"modal-body\">\n\t       <form novalidate #redeemFitCoinsForm=\"ngForm\">\n\t       \t  <input name=\"memberId\" [(ngModel)]=\"this.personId\" type=\"text\" class=\"form-control\">\n\t\t\t  <div class=\"form-group\">\n\t\t\t    <label for=\"store\">Store</label>\n\t\t\t    <select class=\"form-control\" name=\"store\" [(ngModel)]=\"this.store\" required>\n\t\t\t   \t \t<option *ngFor=\"let store of stores\" [value]=\"store.personId\">{{store.storeName}}</option>\n\t\t\t\t</select>\n\t\t\t  </div>\n\t\t\t  <div class=\"form-group\">\n\t\t\t    <label for=\"redeemedFor\">Redeeming for What</label>\n\t\t\t    <select name=\"redeemedFor\" [(ngModel)]=\"this.redeemedFor\" class=\"form-control\" id=\"redeemedFor\" required>\n\t\t\t    \t\t<option value=\"T-Shirt\">T-Shirt</option>\n\t\t\t    \t\t<option value=\"Protein Drink\">Protein Drink</option>\n\t\t\t    \t\t<option value=\"Power Bar\">Power Bar</option>\n\t\t\t    </select>\n\t\t\t  </div>\n\t\t\t  <div class=\"form-group\">\n\t\t\t    <label for=\"fitCoinsToRedeem\">Amount to Redeem</label>\n\t\t\t    <input name=\"fitCoinsToRedeem\" [(ngModel)]=\"this.fitCoinsToRedeem\" type=\"text\" class=\"form-control\" id=\"fitCoinsToRedeem\" required>\n\t\t\t  </div>\n\t\t\t</form>\n\t      </div>\n\t      <div class=\"modal-footer\">\n\t        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"closeForm()\">Close</button>\n\t        <button type=\"button\" class=\"btn btn-primary\" (click)=\"redeemFitCoins()\" data-dismiss=\"modal\">Redeem FitCoins</button>\n\t      </div>\n\t    </div>\n\t  </div>\n\t</div>\n\t<!-- Modal -->\n\t\n"
+module.exports = "\n \t<!-- Modal -->\n\t<div class=\"modal fade\" aria-hidden=\"true\" id=\"redeemFitcoinsShow\" role=\"dialog\">\n\t  <div class=\"modal-dialog\" role=\"document\">\n\t    <div class=\"modal-content\">\n\t      <div class=\"modal-header\">\n\t        <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>\n\t        <h4 class=\"modal-title\" id=\"myModalLabel\">Redeem Fitcoins</h4>\n\t      </div>\n\t      <div class=\"modal-body\">\n\t       <form novalidate #redeemFitcoinsForm=\"ngForm\">\n\t       \t  <input name=\"memberId\" [(ngModel)]=\"this.personId\" type=\"text\" class=\"form-control\">\n\t\t\t  <div class=\"form-group\">\n\t\t\t    <label for=\"store\">Store</label>\n\t\t\t    <select class=\"form-control\" name=\"store\" [(ngModel)]=\"this.store\" required>\n\t\t\t   \t \t<option *ngFor=\"let store of stores\" [value]=\"store.personId\">{{store.storeName}}</option>\n\t\t\t\t</select>\n\t\t\t  </div>\n\t\t\t  <div class=\"form-group\">\n\t\t\t    <label for=\"redeemedFor\">Redeeming for What</label>\n\t\t\t    <select name=\"redeemedFor\" [(ngModel)]=\"this.redeemedFor\" class=\"form-control\" id=\"redeemedFor\" required>\n\t\t\t    \t\t<option value=\"T-Shirt\">T-Shirt</option>\n\t\t\t    \t\t<option value=\"Protein Drink\">Protein Drink</option>\n\t\t\t    \t\t<option value=\"Power Bar\">Power Bar</option>\n\t\t\t    </select>\n\t\t\t  </div>\n\t\t\t  <div class=\"form-group\">\n\t\t\t    <label for=\"fitCoinsToRedeem\">Amount to Redeem</label>\n\t\t\t    <input name=\"fitCoinsToRedeem\" [(ngModel)]=\"this.fitCoinsToRedeem\" type=\"text\" class=\"form-control\" id=\"fitCoinsToRedeem\" required>\n\t\t\t  </div>\n\t\t\t</form>\n\t      </div>\n\t      <div class=\"modal-footer\">\n\t        <button type=\"button\" class=\"btn btn-default\" data-dismiss=\"modal\" (click)=\"closeForm()\">Close</button>\n\t        <button type=\"button\" class=\"btn btn-primary\" (click)=\"redeemFitcoins()\" data-dismiss=\"modal\">Redeem Fitcoins</button>\n\t      </div>\n\t    </div>\n\t  </div>\n\t</div>\n\t<!-- Modal -->\n\t\n"
 
 /***/ }),
 
@@ -670,7 +670,7 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 var RedeemFitcoinsFormComponent = /** @class */ (function () {
     function RedeemFitcoinsFormComponent(http) {
         this.http = http;
-        this.closeRedeemFitCoinsFormEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
+        this.closeRedeemFitcoinsFormEvent = new _angular_core__WEBPACK_IMPORTED_MODULE_0__["EventEmitter"]();
         this.apiBaseURL = _environments_environment__WEBPACK_IMPORTED_MODULE_2__["environment"].apiBaseURL;
         this.stores = [];
         this.fitCoinBalance = 0;
@@ -688,9 +688,9 @@ var RedeemFitcoinsFormComponent = /** @class */ (function () {
             console.log('Error: ' + err);
         }
     };
-    RedeemFitcoinsFormComponent.prototype.getFitCoinBalance = function (personId) {
+    RedeemFitcoinsFormComponent.prototype.getFitcoinBalance = function (personId) {
         var data;
-        var apiURL = this.apiBaseURL + "FitCoinWallet/" + personId;
+        var apiURL = this.apiBaseURL + "FitcoinWallet/" + personId;
         try {
             data = this.http.get(apiURL);
         }
@@ -708,11 +708,11 @@ var RedeemFitcoinsFormComponent = /** @class */ (function () {
         this.getStores();
     };
     RedeemFitcoinsFormComponent.prototype.closeForm = function () {
-        this.closeRedeemFitCoinsFormEvent.emit(false);
+        this.closeRedeemFitcoinsFormEvent.emit(false);
     };
-    RedeemFitcoinsFormComponent.prototype.redeemFitCoins = function (personId) {
+    RedeemFitcoinsFormComponent.prototype.redeemFitcoins = function (personId) {
         var _this = this;
-        var apiURL = this.apiBaseURL + "RedeemFitCoins";
+        var apiURL = this.apiBaseURL + "RedeemFitcoins";
         var today = new Date();
         var dd = today.getDate();
         var mm = today.getMonth() + 1; //January is 0!
@@ -733,12 +733,12 @@ var RedeemFitcoinsFormComponent = /** @class */ (function () {
             fitCoinQuantity: Number(this.fitCoinsToRedeem) };
         this.http.post(apiURL, data)
             .subscribe(function (res) {
-            _this.getFitCoinBalance(_this.personId).subscribe(function (data) {
+            _this.getFitcoinBalance(_this.personId).subscribe(function (data) {
                 _this.fitCoinBalance = Number(data.fitCoinBalance);
             }, function (error) {
                 _this.fitCoinBalance = 0;
             });
-            _this.closeRedeemFitCoinsFormEvent.emit(false);
+            _this.closeRedeemFitcoinsFormEvent.emit(false);
         }, function (err) {
             console.log("Error Occurred" + err);
         });
@@ -750,11 +750,11 @@ var RedeemFitcoinsFormComponent = /** @class */ (function () {
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Input"])(),
         __metadata("design:type", Boolean)
-    ], RedeemFitcoinsFormComponent.prototype, "redeemFitCoinsShow", void 0);
+    ], RedeemFitcoinsFormComponent.prototype, "redeemFitcoinsShow", void 0);
     __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Output"])(),
         __metadata("design:type", Object)
-    ], RedeemFitcoinsFormComponent.prototype, "closeRedeemFitCoinsFormEvent", void 0);
+    ], RedeemFitcoinsFormComponent.prototype, "closeRedeemFitcoinsFormEvent", void 0);
     RedeemFitcoinsFormComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
             selector: 'app-redeem-fitcoins-form',
