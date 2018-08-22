@@ -824,7 +824,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_0__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/ctylerus.ibm.com/eclipse-workspace/fitcoin-app/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /Users/ctylerus.ibm.com/eclipse-workspace/fitcoin/fitcoin-app/src/main.ts */"./src/main.ts");
 
 
 /***/ })

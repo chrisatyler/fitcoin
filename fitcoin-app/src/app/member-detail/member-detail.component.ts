@@ -102,10 +102,14 @@ export class MemberDetailComponent implements OnInit {
 				activity: "Checked In",
 				activityDate: todayFormatted,
 				fitCoinQuantity: fitCoinsToAdd };
+		console.log(apiURL);
+		console.log(data);
 		this.http.post(apiURL,data)
 			.subscribe(res => {
 					this.getFitCoinBalance(this.personId).subscribe(data => {
 						this.fitCoinBalance = Number(data.fitCoinBalance);
+						console.log('added coins');
+						console.log(this.fitCoinBalance);
 					}, error => {
 						this.fitCoinBalance = 0;
 					});
