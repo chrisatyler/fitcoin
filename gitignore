@@ -5,5 +5,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-node_modules/
-package-lock.json
+fitcoin-app/node_modules/
+wolfpack-fitclub-fitcoin/node_modules
+
+fitcoin-app/package-lock.json
+wolfpack-fitclub-fitcoin/package-lock.json
