@@ -16,7 +16,7 @@ With the Fitcoin app, a Fitness Club can add new members. For active members, yo
 
 ## Fitcoin architecture
 ---
-![alt text](./static/images/fitcoin-architecture.png "Fitcoin Architecture")
+![alt text](./static/images/Fitcoin-architecture.png "Fitcoin Architecture")
 
 ### Install the components
 ---
