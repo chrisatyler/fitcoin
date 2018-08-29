@@ -136,3 +136,5 @@ You should see some data returned in a json format that should look something li
 ```
 
 Congratulations! You now have a working Blockchain with data.
+
+Now, you can [Build and run the Fitcoin Angular Web App](../fitcoin-app/README.md)

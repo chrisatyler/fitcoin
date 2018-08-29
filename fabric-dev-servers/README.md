@@ -63,3 +63,5 @@ From within the fabric-dev-servers directory, run the following command to start
 ```
 
 Congratulations! You now have a working Hyperledger Fabric and Composer environment.
+
+Next, you can [Build and deploy the Fitcoin Blockchain Network](../wolfpack-fitclub-fitcoin/README.md)

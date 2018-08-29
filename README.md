@@ -14,12 +14,25 @@ With Fitcoins, we even add a new feature to loyalty programs, community building
 
 With the Fitcoin app, a Fitness Club can add new members. For active members, you can simulate those members receiving rewards points, redeeming rewards points, and viewing their rewards points history. Clubs can also inactivate members to simulate members cancelling their memberships, something we hope never happens.
 
+## Fitcoin architecture
+---
+![alt text](./static/images/fitcoin-architecture.png "Fitcoin Architecture")
+
+### Install the components
+---
+1. Verify the pre-requisites below for MacOS and Linux
+1. [Install Hyperledger Fabric and Composer](./fabric-dev-servers/README.md)
+2. [Build and deploy the Fitcoin Blockchain Network](./wolfpack-fitclub-fitcoin/README.md)
+3. [Build and run the Fitcoin Angular Web App](./fitcoin-app/README.md)
+
 ## Main components
+---
 1. Hyperledger Fabric and Hyperledger Composer
 2. Fitcoin Blockchain Network Archive
 3. Fitcoin Angular Web App
 
 ## Pre-requisites
+---
 1. At least 4Gb of memory
 2. Operating Systems: Ubuntu Linux 14.04 / 16.04 LTS (both 64-bit), or Mac OS 10.12
 3. Docker Engine: Version 17.03 or higher
@@ -121,9 +134,5 @@ Follow the instructions here to install Docker for Mac (stable): https://docs.do
 
 After running the installed Docker application you should have the whale icon in your menu bar, with a green “Docker is running” status.
 
-## Next Steps
-### Install the components
-1. [Hyperledger Fabric and Composer](./fabric-dev-servers/README.md)
-2. [Build and deploy the Fitcoin Blockchain Network](./wolfpack-fitclub-fitcoin/README.md)
-3. [Build and run the Fitcoin Angular Web App](./fitcoin-app/README.md)
+
 
