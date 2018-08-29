@@ -1,6 +1,6 @@
-# The Fitcoin project
+# Using Blockchain to Track Fitness Rewards
 
-This is a sample web application that uses a Hyperledger Fabric blockchain to track and trace fitness rewards. 
+This is a sample web application that uses a Hyperledger Fabric blockchain to track and trace fitness rewards.
 
 One of the biggest challenges Fitness Clubs face is maintaining members. It is always cheaper to keep a member than attract new members. To retain members, some clubs will offer loyalty programs, but oftentimes, those are ineffective because they may provide future free months or potentially offer a discount to friends and family. Sometimes, the program only rewards members when they refer friends to the club.
 
@@ -12,24 +12,17 @@ In order to make loyalty more effective, there are a few things that will improv
 
 With Fitcoins, we even add a new feature to loyalty programs, community building. By bringing local merchants into the program, we can facilitate commerce with those merchants that want to be affiliated with the club loyalty program. This provides an easy way for members to transact with the stores using digital currency. The store owners benefit by getting access to customers they may not have had. As the store owners earn Fitcoins through purchases, those Fitcoins could potentially be exchanged for cash from the club or used to maybe purchase advertising at the club. This creates a whole ecosystem around the club and a sense of community.
 
-With the Fitcoin app, a Fitness Club can add new members. For active members, you can simulate those members receiving rewards points, redeeming rewards points, and viewing their rewards points history. Clubs can also inactivate members to simulate members cancelling their memberships, something we hope never happens.
+With the Fitcoin app, a Fitness Club can add new members. For active members, you can simulate those members receiving rewards points, redeeming rewards points, and viewing their rewards points history. Clubs can also deactivate members to simulate members cancelling their memberships, something we hope never happens.
 
-## Fitcoin architecture
+
 ---
 ![alt text](./static/images/Fitcoin-architecture.png "Fitcoin Architecture")
 
-### Install the components
+## Flow
 ---
-1. Verify the pre-requisites below for MacOS and Linux
-1. [Install Hyperledger Fabric and Composer](./fabric-dev-servers/README.md)
-2. [Build and deploy the Fitcoin Blockchain Network](./wolfpack-fitclub-fitcoin/README.md)
-3. [Build and run the Fitcoin Angular Web App](./fitcoin-app/README.md)
-
-## Main components
----
-1. Hyperledger Fabric and Hyperledger Composer
-2. Fitcoin Blockchain Network Archive
-3. Fitcoin Angular Web App
+1. Install Hyperledger Fabric and Composer
+2. Build and Deploy the Fitcoin Blockchain Network
+3. Build and run the Fitcoin Angular Web App
 
 ## Pre-requisites
 ---
@@ -42,8 +35,8 @@ With the Fitcoin app, a Fitness Club can add new members. For active members, yo
 7. git: 2.9.x or higher
 8. Python: 2.7.x
 
-## Installing pre-requisites on Ubuntu
-
+### Installing pre-requisites on Ubuntu
+---
 1. Login as a normal user, rather than root.
 2. Do not su to root.
 3. When installing prerequisites, use curl, then unzip using sudo.
@@ -65,12 +58,12 @@ Next run the script - as this briefly uses sudo during its execution, you will b
 ./prereqs-ubuntu.sh
 ```
 
-## Installing pre-requisites on MacOS
+### Installing pre-requisites on MacOS
 ---
 
 **Note: Mac OS X version 10.12.6 was used for these instructions.**
 
-### Install nvm and Apple Xcode 
+#### Install nvm and Apple Xcode
 ---
 
 First install nvm (the Node version manager). nvm is a tool that allows you to easily install, update and switch between versions of Node.js.
@@ -135,4 +128,39 @@ Follow the instructions here to install Docker for Mac (stable): https://docs.do
 After running the installed Docker application you should have the whale icon in your menu bar, with a green “Docker is running” status.
 
 
+## Included components
+---
+1. [Hyperledger Fabric and Hyperledger Composer]()
+2. [Fitcoin Blockchain Network Archive]()
+3. [Fitcoin Angular Web App]()
 
+## Featured Technologies
+---
+1. [Angular](https://angular.io/)
+2. [Node.js](https://nodejs.org/en/)
+3. [Docker](https://www.docker.com/)
+4. [NVM](https://github.com/creationix/nvm/blob/master/README.md)
+5. [Apple Xcode](https://developer.apple.com/xcode/)
+
+
+## Steps
+---
+1. [Install Hyperledger Fabric and Composer](./fabric-dev-servers/README.md)
+2. [Build and deploy the Fitcoin Blockchain Network](./wolfpack-fitclub-fitcoin/README.md)
+3. [Build and run the Fitcoin Angular Web App](./fitcoin-app/README.md)
+
+# Links
+---
+* [IBM Blockchain - Marbles demo](https://github.com/IBM-Blockchain/marbles)
+* [Hyperledger Composer](https://hyperledger.github.io/composer/latest/index.html)
+
+
+# Learn more
+---
+* **Blockchain Code Patterns**: Enjoyed this Code Pattern? Check out our other [Blockchain Code Patterns](https://developer.ibm.com/code/technologies/blockchain/)
+
+* **Blockchain 101**: Learn why IBM believes that blockchain can transform businesses, industries – and even the world. [Blockchain 101](https://developer.ibm.com/code/technologies/blockchain/)
+
+# License
+---
+[Apache 2.0](LICENSE)
